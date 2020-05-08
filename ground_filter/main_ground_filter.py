@@ -23,12 +23,15 @@ _, pc = preProcess.ground_filter_heightDiff(raw_data, 400, 400, 0.3, 0.5)
 CFG = yaml.safe_load(open('config/semantic-kitti.yaml', 'r'))
 colors = np.zeros((pc.shape[0],3))
 d = pc[:, 3]
+tmp = np.where(d<=0)
 d = np.where(d>0, 70, 20)
-for i in range(colors.shape[0]):
-    if d[i] == 20:
-        colors[i] = [0, 0, 255]
-    else:
-        colors[i] = [255,0,0]
+colors[:] = [0,0,255]
+colors[tmp] = [255,0,0]
+# for i in range(colors.shape[0]):
+#     if d[i] == 20:
+#         colors[i] = [0, 0, 255]
+#     else:
+#         colors[i] = [255,0,0]
     
     # colors[i] = CFG['color_map'][label[i]]
 point_cloud = open3d.PointCloud()
