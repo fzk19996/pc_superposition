@@ -25,8 +25,8 @@ colors = np.zeros((pc.shape[0],3))
 d = pc[:, 3]
 tmp = np.where(d<=0)
 d = np.where(d>0, 70, 20)
-colors[:] = [0,0,255]
-colors[tmp] = [255,0,0]
+colors[:] = [255,0,0]
+colors[tmp] = [0,0,255]
 # for i in range(colors.shape[0]):
 #     if d[i] == 20:
 #         colors[i] = [0, 0, 255]
